@@ -18,6 +18,7 @@ class CreateCarsTable extends Migration
             $table->string('car_nm');
             $table->string('car_brand');
             $table->string('car_num');
+            $table->string('image')->nullable();
             $table->boolean('status')->default(false)->comment('rented->TRUE not-rented->FALSE');
             $table->string('rating')->nullable();
             $table->text('review')->nullable();

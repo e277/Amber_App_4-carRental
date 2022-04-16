@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CarsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/','welcome');
+Route::view('/rent-a-car','rent')->name('rent');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -24,5 +25,9 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::view('admin/dashboard', 'admin.dashboard')->name('admin');
+    Route::get('admin/dashboard/', [CarsController::class, 'adminIndex'])->name('admin');
+    Route::get('admin/dashboard/car-details', [CarsController::class, 'listOfCars']);
 });
+
+// Testing routes
+Route::view('test', 'test');

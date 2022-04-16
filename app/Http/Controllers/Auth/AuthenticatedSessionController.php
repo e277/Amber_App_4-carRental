@@ -39,9 +39,9 @@ class AuthenticatedSessionController extends Controller
         if(Auth::attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->role == User::ADMIN) {
-                return redirect('admin');
+                return redirect()->route('admin');
             } else {
-                return redirect('dashboard');
+                return redirect()->route('dashboard');
             }
         } else {
             return redirect()->route('login')
